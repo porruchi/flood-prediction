@@ -1,0 +1,83 @@
+.menu-bar {
+  background-color: #ffffff; /* พื้นหลังสีขาว */
+  border-radius: 10px; /* สี่เหลี่ยมมน */
+  box-shadow: 0px 4px 4px #00000040; /* เงา */
+  height: 650px; /* ความสูง */
+  position: fixed; /* เปลี่ยนเป็น fixed แทน absolute */
+  top: 64px; /* ระยะห่างจากด้านบน */
+  left: 20px; /* ระยะห่างจากซ้าย */
+  width: 179px; /* ความกว้าง */
+  display: flex; /* ใช้ flexbox */
+  flex-direction: column; /* แนวตั้ง */
+  align-items: center; /* จัดแนวกลางในแนวนอน */
+}
+
+.content {
+  background-color: #ffffff; /* พื้นหลังสีขาว */
+  border-radius: 20px; /* สี่เหลี่ยมมน 20px */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4); /* เงา */
+  height: 650px; /* ความสูง */
+  position: fixed; /* เปลี่ยนเป็น fixed แทน absolute */
+  top: 64px; /* ระยะห่างจากด้านบน */
+  left: 220px; /* ระยะห่างจากเมนูบาร์ */
+  width: calc(100% - 240px); /* ความกว้าง (รวมระยะห่าง) */
+  max-width: 1280px; /* ความกว้างสูงสุด */
+  overflow: hidden; /* ซ่อนส่วนเกิน */
+}
+
+.nav-link {
+  width: 100%;
+  flex: 1;
+  color: #9d58ba; /* สีข้อความ */
+}
+
+.active {
+  background-color: #9d58ba !important;/* หรือสีที่คุณต้องการ */
+  color: white; /* หรือสีข้อความที่คุณต้องการ */
+}
+
+.nav-link:hover {
+  background-color: #7b4f8e; /* สีพื้นหลังเมื่อ hover */
+  color: white; /* สีข้อความเมื่อ hover */
+}
+
+.tab-content {
+  padding: 20px; /* เพิ่มพื้นที่รอบๆ เนื้อหา */
+}
+
+.nav {
+  display: flex; /* ใช้ flexbox */
+  flex-direction: column; /* จัดให้เป็นคอลัมน์ */
+  align-items: center; /* จัดให้อยู่ตรงกลาง */
+  margin-top: 20px; /* ห่างจากด้านบน */
+  width: 150px;
+}
+/*Header*/
+.header {
+  display: flex;
+  justify-content: space-between; /* Aligns children to the left and right */
+  padding: 10px 20px; /* Add some padding */
+  background-color: #f0f0f0; /* Light gray background */
+  border-bottom: 1px solid #ccc; /* Optional: add a border at the bottom */
+  padding-left: 240px; /* Adjust padding for the sidebar width */
+}
+
+.header-title {
+  font-size: 20px; /* Adjust the font size */
+  margin: 0; /* Remove default margin */
+}
+
+.header-links {
+  font-size: 16px; /* Font size for links */
+}
+
+.header-links a {
+  text-decoration: none; /* Remove underline */
+  color: #007bff; /* Bootstrap primary color for links */
+  margin-left: 15px; /* Space between links */
+}
+
+.header-links a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+/*Login Register*/

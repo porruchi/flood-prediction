@@ -1,6 +1,6 @@
 # Flood Prediction System
 
-ระบบทำนายความเสี่ยงน้ำท่วมโดยใช้ Machine Learning บน AWS
+A Machine Learning system for predicting flood risk, deployed on AWS.
 
 ## Architecture
 
@@ -17,7 +17,7 @@ flowchart LR
     LM -->|Save result| DB[DynamoDB]
 ```
 
-### Flow การทำงาน
+### How It Works
 
 ```
 SageMaker → S3 → Lambda ← API Gateway ← User
@@ -25,27 +25,27 @@ SageMaker → S3 → Lambda ← API Gateway ← User
                 DynamoDB
 ```
 
-| ขั้นตอน | บริการ | คำอธิบาย |
-|--------|--------|-----------|
-| 1 | SageMaker | Train โมเดลและบันทึกลง S3 |
-| 2 | S3 | เก็บไฟล์โมเดล (`flood_risk_model.pkl`) และ dependencies |
-| 3 | API Gateway | รับ request จาก user และส่งต่อไปยัง Lambda |
-| 4 | Lambda | โหลดโมเดลจาก S3 แล้วทำนายผล |
-| 5 | DynamoDB | บันทึกผลการทำนาย |
-| 6 | User | ส่ง input และรับผลทำนายกลับมา |
+| Step | Service | Description |
+|------|---------|-------------|
+| 1 | SageMaker | Train the model and store it in S3 |
+| 2 | S3 | Store the model file (`flood_risk_model.pkl`) and dependencies |
+| 3 | API Gateway | Receive requests from users and forward to Lambda |
+| 4 | Lambda | Load the model from S3 and run prediction |
+| 5 | DynamoDB | Save the prediction result |
+| 6 | User | Submit input data and receive prediction result |
 
 ## Input Features
 
-| Feature | คำอธิบาย |
-|---------|-----------|
-| `frd_total_rainfall` | ปริมาณน้ำฝนสะสม (mm) |
-| `Temperature` | อุณหภูมิ (°C) |
-| `Humidity` | ความชื้นสัมพัทธ์ (%) |
-| `Wind Speed` | ความเร็วลม (km/h) |
+| Feature | Description |
+|---------|-------------|
+| `frd_total_rainfall` | Total accumulated rainfall (mm) |
+| `Temperature` | Temperature (°C) |
+| `Humidity` | Relative humidity (%) |
+| `Wind Speed` | Wind speed (km/h) |
 
 ## API Usage
 
-**Endpoint:** `POST /predict` (ผ่าน API Gateway)
+**Endpoint:** `POST /predict` (via API Gateway)
 
 **Request Body:**
 ```json
@@ -75,11 +75,11 @@ SageMaker → S3 → Lambda ← API Gateway ← User
 }
 ```
 
-> `prediction: 1` = มีความเสี่ยงน้ำท่วม, `prediction: 0` = ไม่มีความเสี่ยง
+> `prediction: 1` = Flood risk detected, `prediction: 0` = No flood risk
 
 ## AWS Resources
 
-| Resource | ชื่อ |
+| Resource | Name |
 |----------|------|
 | S3 Bucket | `flood-predict` |
 | S3 Keys | `flood_risk_model.pkl`, `dependencies.zip` |
@@ -100,8 +100,7 @@ SageMaker → S3 → Lambda ← API Gateway ← User
 
 ## Prerequisites
 
-- AWS account พร้อม permissions: S3, Lambda, API Gateway, DynamoDB, SageMaker
-- Python 3.x (สำหรับ Lambda)
-- Node.js (สำหรับ backend)
-- ไฟล์ `flood_risk_model.pkl` และ `dependencies.zip` อัปโหลดไว้ใน S3 bucket `flood-predict` แล้ว
-"# flood-prediction" 
+- AWS account with permissions: S3, Lambda, API Gateway, DynamoDB, SageMaker
+- Python 3.x (for Lambda)
+- Node.js (for backend)
+- `flood_risk_model.pkl` and `dependencies.zip` uploaded to the `flood-predict` S3 bucket
